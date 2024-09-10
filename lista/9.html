@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversão de Tempo</title>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+        var segundos = prompt("Digite a quantidade de segundos:");
+        segundos = parseInt(segundos);
+
+        var dias = Math.floor(segundos / (24 * 3600));
+        segundos %= 24 * 3600;
+        var horas = Math.floor(segundos / 3600);
+        segundos %= 3600;
+        var minutos = Math.floor(segundos / 60);
+        segundos %= 60;
+
+        document.getElementById("resultado").innerText = dias + " dias, " + horas + " horas, " + minutos + " minutos, " + segundos + " segundos";
+    </script>
+</body>
+</html>
