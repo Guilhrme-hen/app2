@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Separar Dígitos</title>
+</head>
+<body>
+    <p id="digitos"></p>
+    <script>
+        var numero = prompt("Digite um numero de cinco digitos:");
+        var digitosSeparados = numero.split("").join("   ");
+        document.getElementById("digitos").innerText = digitosSeparados;
+    </script>
+</body>
+</html>
