@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário de Cadastro</h1>
+        <form id="cadastroForm" onsubmit="validarFormulario(event)">
+            <input type="text" id="nome" placeholder="Nome">
+            <div id="erroNome" class="error"></div>
+            <input type="email" id="email" placeholder="Email">
+            <div id="erroEmail" class="error"></div>
+            <input type="password" id="senha" placeholder="Senha">
+            <div id="erroSenha" class="error"></div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault();
+            let valido = true;
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            if (!nome) {
+                document.getElementById('erroNome').textContent = "Nome é obrigatório.";
+                valido = false;
+            } else {
+                document.getElementById('erroNome').textContent = "";
+            }
+
+            if (!email.includes('@')) {
+                document.getElementById('erroEmail').textContent = "Email inválido.";
+                valido = false;
+            } else {
+                document.getElementById('erroEmail').textContent = "";
+            }
+
+            if (senha.length < 6) {
+                document.getElementById('erroSenha').textContent = "A senha deve ter pelo menos 6 caracteres.";
+                valido = false;
+            } else {
+                document.getElementById('erroSenha').textContent = "";
+            }
+
+            if (valido) {
+                alert("Formulário enviado com sucesso!");
+                document.getElementById('cadastroForm').reset();
+            }
+        }
+    </script>
+</body>
+</html>
