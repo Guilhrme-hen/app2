@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button.remove {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        <input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa">
+        <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <script>
+        const tarefas = [];
+
+        function adicionarTarefa() {
+            const novaTarefa = document.getElementById('novaTarefa').value;
+            if (novaTarefa) {
+                tarefas.push(novaTarefa);
+                document.getElementById('novaTarefa').value = '';
+                atualizarLista();
+            } else {
+                alert("Por favor, insira uma tarefa.");
+            }
+        }
+
+        function removerTarefa(index) {
+            tarefas.splice(index, 1);
+            atualizarLista();
+        }
+
+        function atualizarLista() {
+            const listaTarefas = document.getElementById('listaTarefas');
+            listaTarefas.innerHTML = '';
+            tarefas.forEach((tarefa, index) => {
+                const li = document.createElement('li');
+                li.textContent = tarefa;
+                const botaoRemover = document.createElement('button');
+                botaoRemover.textContent = 'Remover';
+                botaoRemover.className = 'remove';
+                botaoRemover.onclick = () => removerTarefa(index);
+                li.appendChild(botaoRemover);
+                listaTarefas.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
