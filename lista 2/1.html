@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Habilitação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 300px;
+            margin: auto;
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificação de Habilitação</h1>
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade"><br><br>
+        <label for="carteira">Possui carteira de motorista:</label>
+        <input type="checkbox" id="carteira" name="carteira"><br><br>
+        <button onclick="verificarHabilitacao()">Verificar</button>
+        <div id="mensagem" class="message"></div>
+    </div>
+
+    <script>
+        function verificarHabilitacao() {
+            const idade = document.getElementById('idade').value;
+            const carteira = document.getElementById('carteira').checked;
+            const mensagem = document.getElementById('mensagem');
+
+            if (idade >= 18 && carteira) {
+                mensagem.textContent = "Você pode dirigir.";
+                mensagem.style.color = "green";
+            } else {
+                mensagem.textContent = "Você não pode dirigir.";
+                mensagem.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
