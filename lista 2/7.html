@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperaturas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Temperaturas</h1>
+    <input type="number" id="valor" placeholder="Digite o valor">
+    <select id="origem">
+        <option value="Celsius">Celsius</option>
+        <option value="Fahrenheit">Fahrenheit</option>
+        <option value="Kelvin">Kelvin</option>
+    </select>
+    <select id="destino">
+        <option value="Celsius">Celsius</option>
+        <option value="Fahrenheit">Fahrenheit</option>
+        <option value="Kelvin">Kelvin</option>
+    </select>
+    <button onclick="converter()">Converter</button>
+    <div id="resultado"></div>
+
+    <script>
+        function celsiusParaFahrenheit(celsius) {
+            return (celsius * 9/5) + 32;
+        }
+
+        function celsiusParaKelvin(celsius) {
+            return celsius + 273.15;
+        }
+
+        function fahrenheitParaCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5/9;
+        }
+
+        function fahrenheitParaKelvin(fahrenheit) {
+            return (fahrenheit - 32) * 5/9 + 273.15;
+        }
+
+        function kelvinParaCelsius(kelvin) {
+            return kelvin - 273.15;
+        }
+
+        function kelvinParaFahrenheit(kelvin) {
+            return (kelvin - 273.15) * 9/5 + 32;
+        }
+
+        function converter() {
+            const valor = parseFloat(document.getElementById('valor').value);
+            const origem = document.getElementById('origem').value;
+            const destino = document.getElementById('destino').value;
+            let resultado;
+
+            switch (origem + "Para" + destino) {
+                case "CelsiusParaFahrenheit":
+                    resultado = celsiusParaFahrenheit(valor);
+                    break;
+                case "CelsiusParaKelvin":
+                    resultado = celsiusParaKelvin(valor);
+                    break;
+                case "FahrenheitParaCelsius":
+                    resultado = fahrenheitParaCelsius(valor);
+                    break;
+                case "FahrenheitParaKelvin":
+                    resultado = fahrenheitParaKelvin(valor);
+                    break;
+                case "KelvinParaCelsius":
+                    resultado = kelvinParaCelsius(valor);
+                    break;
+                case "KelvinParaFahrenheit":
+                    resultado = kelvinParaFahrenheit(valor);
+                    break;
+                default:
+                    resultado = "Conversão inválida!";
+            }
+
+            document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+        }
+    </script>
+</body>
+</html>
