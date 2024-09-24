@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com Botões</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="titulo">Título Original</h1>
+        <button onclick="mudarTexto()">Mudar Texto</button>
+        <button onclick="mudarCor()">Mudar Cor</button>
+        <button onclick="adicionarParagrafo()">Adicionar Parágrafo</button>
+        <div id="conteudo"></div>
+    </div>
+
+    <script>
+        function mudarTexto() {
+            const titulo = document.getElementById('titulo');
+            titulo.textContent = "Novo Título";
+        }
+
+        function mudarCor() {
+            const titulo = document.getElementById('titulo');
+            titulo.style.color = titulo.style.color === 'blue' ? 'black' : 'blue';
+        }
+
+        function adicionarParagrafo() {
+            const conteudo = document.getElementById('conteudo');
+            const novoParagrafo = document.createElement('p');
+            novoParagrafo.textContent = "Este é um novo parágrafo adicionado.";
+            conteudo.appendChild(novoParagrafo);
+        }
+    </script>
+</body>
+</html>
