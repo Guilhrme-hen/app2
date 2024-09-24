@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .user-list {
+            margin-top: 20px;
+        }
+        .user-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de IMC</h1>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" name="peso" step="0.1"><br><br>
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" name="altura" step="0.01"><br><br>
+        <button onclick="adicionarUsuario()">Adicionar Usuário</button>
+        <div id="mensagem" class="message"></div>
+        <div id="listaUsuarios" class="user-list"></div>
+    </div>
+
+    <script>
+        const usuarios = [];
+
+        function calcularIMC(peso, altura) {
+            return (peso / (altura * altura)).toFixed(2);
+        }
+
+        function adicionarUsuario() {
+            const nome = document.getElementById('nome').value;
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            const mensagem = document.getElementById('mensagem');
+            const listaUsuarios = document.getElementById('listaUsuarios');
+
+            if (nome && peso && altura) {
+                const imc = calcularIMC(peso, altura);
+                usuarios.push({ nome, peso, altura, imc });
+
+                mensagem.textContent = "Usuário adicionado com sucesso!";
+                mensagem.style.color = "green";
+
+                listaUsuarios.innerHTML = '';
+                usuarios.forEach(usuario => {
+                    const userItem = document.createElement('div');
+                    userItem.className = 'user-item';
+                    userItem.textContent = `${usuario.nome} - IMC: ${usuario.imc}`;
+                    listaUsuarios.appendChild(userItem);
+                });
+            } else {
+                mensagem.textContent = "Por favor, preencha todos os campos.";
+                mensagem.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
