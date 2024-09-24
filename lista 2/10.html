@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Cor dos Parágrafos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Alterar Cor dos Parágrafos</h1>
+        <input type="color" id="cor" value="#000000">
+        <button onclick="alterarCor()">Alterar Cor</button>
+        <div id="paragrafos">
+            <p>Parágrafo 1</p>
+            <p>Parágrafo 2</p>
+            <p>Parágrafo 3</p>
+        </div>
+    </div>
+
+    <script>
+        function alterarCor() {
+            const cor = document.getElementById('cor').value;
+            const paragrafos = document.querySelectorAll('#paragrafos p');
+            paragrafos.forEach(paragrafo => {
+                paragrafo.style.color = cor;
+            });
+        }
+    </script>
+</body>
+</html>
