@@ -24,6 +24,7 @@
 <body>
     <div class="container">
         <h1 id="titulo">Título Original</h1>
+        <input type="text" id="novoTexto" placeholder="Digite o novo texto"><br><br>
         <button onclick="mudarTexto()">Mudar Texto</button>
         <button onclick="mudarCor()">Mudar Cor</button>
         <button onclick="adicionarParagrafo()">Adicionar Parágrafo</button>
@@ -32,8 +33,13 @@
 
     <script>
         function mudarTexto() {
+            const novoTexto = document.getElementById('novoTexto').value;
             const titulo = document.getElementById('titulo');
-            titulo.textContent = "Novo Título";
+            if (novoTexto) {
+                titulo.textContent = novoTexto;
+            } else {
+                alert("Por favor, insira o texto desejado.");
+            }
         }
 
         function mudarCor() {
